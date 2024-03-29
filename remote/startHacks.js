@@ -12,6 +12,13 @@ export async function main(ns) {
     }
     ns.scp('hack.js', myServer)
 
+    if (ns.fileExists('share.js', myServer)) {
+      ns.rm('share.js', myServer)
+    }
+    ns.scp('share.js', myServer)
+
+    ns.exec('share.js', myServer, 10)
+
     startHacks(ns, myServer, servers, true)
   }
 }
