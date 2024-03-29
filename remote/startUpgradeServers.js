@@ -3,7 +3,7 @@ export async function main(ns) {
   let ram = 256
 
   while (true) {
-    ns.exec('remote/upgradeAndHack.js', 'home', 1)
+    ns.exec('remote/upgradeAndHack.js', 'home', 1, ram)
 
     if (ram == 1048576) {
       break
