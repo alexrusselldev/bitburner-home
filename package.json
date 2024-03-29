@@ -1,0 +1,17 @@
+{
+  "name": "bitburner-home",
+  "version": "1.0.0",
+  "description": "Repo for the home host on bitburner.",
+  "main": ".",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "lint-commit": "devmoji -e --lint"
+  },
+  "author": "Alex Russell",
+  "license": "ISC",
+  "dependencies": {
+    "devmoji": "^2.3.0",
+    "husky": "^9.0.11"
+  }
+}
