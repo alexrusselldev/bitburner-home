@@ -16,7 +16,7 @@ export async function main(ns) {
   let ram = ns.args[0]
 
   if (!Number.isInteger(ram)) {
-    ns.alert('ERROR: Please give a valid amount of starting RAM')
+    ns.tprint('ERROR: Please give a valid amount of starting RAM')
     return
   }
 
