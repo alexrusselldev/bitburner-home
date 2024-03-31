@@ -1,9 +1,17 @@
 import { startHacks } from 'lib/startHacks'
 
+export function autocomplete() {
+  return [
+    2, 4, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768,
+    65536, 131072, 262144, 524288, 1048576,
+  ]
+}
+
 /** @param {NS} ns */
 export async function main(ns) {
-  const serverFile = ns.read(ns.args[0])
-  const ram = ns.args[1]
+  ns.disableLog('ALL')
+  const serverFile = ns.read('servers.txt')
+  const ram = ns.args[0]
 
   if (!Number.isInteger(ram)) {
     ns.alert('Please give a valid amount of RAM')
@@ -33,6 +41,6 @@ export async function main(ns) {
     ns.purchaseServer(serverName, ram)
     ns.scp('hack.js', serverName)
 
-    startHacks(ns, serverName, servers, true)
+    startHacks(ns, serverName, [serverName], true)
   }
 }
