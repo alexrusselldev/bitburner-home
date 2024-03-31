@@ -10,7 +10,9 @@ export function autocomplete(_data, args) {
   return []
 }
 
-/** @param {NS} ns */
+/**
+ * @param {NS} ns
+ */
 export async function main(ns) {
   ns.disableLog('ALL')
   const serverFile = ns.read('servers.txt')
