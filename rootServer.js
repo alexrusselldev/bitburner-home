@@ -35,10 +35,11 @@ export async function main(ns) {
     ns.nuke(server)
     if (ns.getServerMoneyAvailable(server) == 0) {
       ns.tprint(
-        `${server} appears to be a backdoor target. Skipping write to servers.txt`
+        `SUCCESS: ${server} rooted. $0 available. Skipping write to servers.txt`
       )
     }
 
     ns.write('servers.txt', `\n${server}`, 'a')
+    ns.tprint(`SUCCESS: ${server} rooted and added to servers.txt`)
   }
 }
