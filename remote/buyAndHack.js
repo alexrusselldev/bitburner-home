@@ -47,6 +47,6 @@ export async function main(ns) {
     ns.purchaseServer(serverName, ram)
     ns.scp('hack.js', serverName)
 
-    startHacks(ns, serverName, [serverName], true)
+    startHacks(ns, serverName, servers, true)
   }
 }
