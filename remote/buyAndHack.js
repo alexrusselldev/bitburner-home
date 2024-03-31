@@ -25,6 +25,7 @@ export async function main(ns) {
     return
   }
 
+  ns.print(`Server cost is $${cost}.`)
   const servers = serverFile.split('\n')
   while (true) {
     const myServers = ns.getPurchasedServers()
@@ -37,6 +38,8 @@ export async function main(ns) {
     const serverName = `server-${myServers.length < 9 ? '0' : ''}${
       myServers.length + 1
     }`
+
+    ns.print(`Purchasing server ${serverName} with ${ram}Gb of RAM.`)
 
     ns.purchaseServer(serverName, ram)
     ns.scp('hack.js', serverName)
