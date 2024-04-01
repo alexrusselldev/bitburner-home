@@ -37,6 +37,7 @@ export async function main(ns) {
       ns.tprint(
         `SUCCESS: ${server} rooted. $0 available. Skipping write to servers.txt`
       )
+      continue
     }
 
     ns.write('servers.txt', `\n${server}`, 'a')
