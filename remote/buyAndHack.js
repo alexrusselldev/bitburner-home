@@ -12,6 +12,8 @@ export function autocomplete(_data, args) {
 
 /**
  * @param {NS} ns
+ * TODO: Add logging
+ * TODO: Add terminal feedback for errors
  */
 export async function main(ns) {
   ns.disableLog('ALL')

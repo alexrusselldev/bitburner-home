@@ -12,6 +12,8 @@ export function autocomplete(_data, args) {
 
 /**
  * @param {NS} ns
+ * TODO: Disable default logs, add logging
+ * TODO: Add terminal message when all servers are upgraded
  */
 export async function main(ns) {
   const ram = ns.args[0]

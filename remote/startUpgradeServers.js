@@ -10,6 +10,8 @@ export function autocomplete(_data, args) {
 
 /**
  * @param {NS} ns
+ * TODO: Add terminal logging
+ * TODO: Reduce timeout
  */
 export async function main(ns) {
   ns.disableLog('ALL')

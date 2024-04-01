@@ -10,6 +10,8 @@ export function autocomplete(_data, args) {
 
 /**
  * @param {NS} ns
+ * TODO: Take multiple args, print table
+ * TODO: Take 'all' flag to print table of all values and costs
  */
 export async function main(ns) {
   const ram = ns.args[0]
