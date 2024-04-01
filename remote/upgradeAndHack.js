@@ -12,21 +12,20 @@ export function autocomplete(_data, args) {
 
 /**
  * @param {NS} ns
- * TODO: Disable default logs, add logging
- * TODO: Add terminal message when all servers are upgraded
  */
 export async function main(ns) {
+  ns.disableLog('ALL')
   const ram = ns.args[0]
 
   if (!Number.isInteger(ram)) {
-    ns.alert('Please give a valid amount of RAM')
+    ns.tprint('ERROR: Please give a valid amount of RAM')
     return
   }
 
   const purchaseCost = ns.getPurchasedServerCost(ram)
 
   if (purchaseCost == Infinity) {
-    ns.alert('Please give a valid amount of RAM')
+    ns.tprint('ERROR: Please give a valid amount of RAM')
     return
   }
 
@@ -36,11 +35,14 @@ export async function main(ns) {
   for (const myServer of myServers) {
     const cost = ns.getPurchasedServerUpgradeCost(myServer, ram)
 
-    while (true) {
-      if (cost == -1) {
-        break
-      }
+    if (cost == -1) {
+      ns.print(`${myServer} already has ${ram}Gb of RAM or more. Skipping...`)
+      continue
+    }
 
+    ns.print(`Waiting to upgrade server ${myServer} for $${cost}`)
+
+    while (true) {
       const availableMoney = ns.getPlayer().money
       if (availableMoney < cost) {
         await ns.sleep(5000)
@@ -50,16 +52,20 @@ export async function main(ns) {
       break
     }
 
-    if (cost > -1) {
-      ns.upgradePurchasedServer(myServer, ram)
-    }
+    ns.upgradePurchasedServer(myServer, ram)
 
     ns.killall(myServer)
 
     ns.scp('hack.js', myServer)
 
+    ns.print(
+      `${myServer} successfully upgraded to ${ram}Gb, restarting hacks...`
+    )
+
     startHacks(ns, myServer, servers, true)
+
+    ns.print(`All hacks started on ${myServer}.`)
   }
 
-  ns.alert('All servers upgraded. Exiting.')
+  ns.tprint(`SUCCESS: All purchased servers upgraded to ${ram}gb`)
 }
