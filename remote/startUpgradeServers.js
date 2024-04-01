@@ -28,6 +28,10 @@ export async function main(ns) {
   }
 
   while (true) {
+    const availableRam =
+      ns.getServerMaxRam(ns.getHostname()) -
+      ns.getServerUsedRam(ns.getHostname())
+
     if (availableRam < ns.getScriptRam('remote/upgradeAndHack.js')) {
       ns.tprint(
         `WARN: Upgrade scripts started up to ${
@@ -45,11 +49,11 @@ export async function main(ns) {
       break
     }
 
-    const availableRam =
+    const newAvailableRam =
       ns.getServerMaxRam(ns.getHostname()) -
       ns.getServerUsedRam(ns.getHostname())
 
-    if (availableRam < ns.getScriptRam('remote/upgradeAndHack.js')) {
+    if (newAvailableRam < ns.getScriptRam('remote/upgradeAndHack.js')) {
       ns.tprint(
         `WARN: Upgrade scripts started up to ${ram}Gb. Out of memory. Exiting...`
       )
